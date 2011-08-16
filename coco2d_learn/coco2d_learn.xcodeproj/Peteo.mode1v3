@@ -252,7 +252,7 @@
 						<dict>
 							<key>PBXSmartGroupTreeModuleColumnWidthsKey</key>
 							<array>
-								<real>240</real>
+								<real>320</real>
 							</array>
 							<key>PBXSmartGroupTreeModuleColumnsKey_v4</key>
 							<array>
@@ -265,20 +265,27 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>506EDAA3102F461B00A389B3</string>
+								<string>E02BB764126CC223006E46A2</string>
+								<string>E02BB7DF126CC224006E46A2</string>
+								<string>E02BB7F8126CC224006E46A2</string>
+								<string>507ED63211C638C6002ED3FC</string>
 								<string>2D500B1D0D5A766B00DBA0E3</string>
+								<string>29B97315FDCFA39411CA2CEA</string>
+								<string>50F414EB1069373D002A0D5E</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>14</integer>
-									<integer>9</integer>
+									<integer>159</integer>
+									<integer>151</integer>
+									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {240, 612}}</string>
+							<string>{{0, 1926}, {320, 553}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -290,19 +297,19 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {257, 630}}</string>
+						<string>{{0, 0}, {337, 571}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
-							<real>240</real>
+							<real>320</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>0 107 1280 671 0 0 1280 778 </string>
+						<string>53 142 1158 612 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
 					<key>Proportion</key>
-					<string>257pt</string>
+					<string>337pt</string>
 				</dict>
 				<dict>
 					<key>Dock</key>
@@ -315,7 +322,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GameScene.m</string>
+								<string>SimpleAudioEngine.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,20 +330,15 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GameScene.m</string>
+										<string>SimpleAudioEngine.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>21CC861913FA383C00007E67</string>
+										<string>21CC87D813FA83D700007E67</string>
 										<key>history</key>
 										<array>
-											<string>21033D1813F814AE0013F655</string>
 											<string>21033D1A13F814AE0013F655</string>
-											<string>21033D1E13F814AE0013F655</string>
 											<string>21033D2413F814AE0013F655</string>
-											<string>21033D2613F814AE0013F655</string>
-											<string>21033D2713F814AE0013F655</string>
-											<string>21033D2813F814AE0013F655</string>
 											<string>21033D2A13F814AE0013F655</string>
 											<string>21033D2E13F814AE0013F655</string>
 											<string>21033D2F13F814AE0013F655</string>
@@ -344,7 +346,6 @@
 											<string>21610D7B13F8B0DA00765144</string>
 											<string>21610D7C13F8B0DA00765144</string>
 											<string>21610D8E13F8B1A100765144</string>
-											<string>21610DB813F8B8A000765144</string>
 											<string>21610DB913F8B8A000765144</string>
 											<string>21610DDF13F8BB6200765144</string>
 											<string>21610E4C13F8CD2800765144</string>
@@ -353,39 +354,53 @@
 											<string>21610E6E13F8F73600765144</string>
 											<string>21610E8713F9051000765144</string>
 											<string>21610E8813F9051000765144</string>
-											<string>21610E8913F9051000765144</string>
 											<string>21610EA413F905EA00765144</string>
 											<string>21610EA513F905EA00765144</string>
-											<string>21610EA913F90DE300765144</string>
 											<string>21610EAA13F90DE300765144</string>
 											<string>21610EAB13F90DE300765144</string>
 											<string>21610EAC13F90DE300765144</string>
 											<string>21610EAE13F90DE300765144</string>
 											<string>21610EAF13F90DE300765144</string>
 											<string>21610ECE13F9132000765144</string>
-											<string>21610ED213F9132000765144</string>
 											<string>21610ED513F9132000765144</string>
 											<string>21610ED613F9132000765144</string>
-											<string>21610F0813F916D100765144</string>
 											<string>21610F0913F916D100765144</string>
 											<string>21610F0A13F916D100765144</string>
 											<string>21610F2613F917C400765144</string>
 											<string>21610F2713F917C400765144</string>
 											<string>21610F2F13F91A9400765144</string>
 											<string>21610F3613F91E9A00765144</string>
-											<string>21610F3D13F9208500765144</string>
-											<string>21610F3F13F9208500765144</string>
 											<string>21610F5B13F92DC700765144</string>
 											<string>21610F8E13F92FDA00765144</string>
-											<string>21610FA113F9302E00765144</string>
 											<string>21610FA213F9302E00765144</string>
 											<string>21CC790A13F946A900007E67</string>
 											<string>21CC790B13F946A900007E67</string>
 											<string>21CC792E13F9FD5500007E67</string>
-											<string>21CC85F213FA368C00007E67</string>
 											<string>21CC85F313FA368C00007E67</string>
 											<string>21CC85F413FA368C00007E67</string>
-											<string>21CC861813FA383C00007E67</string>
+											<string>21CC86B513FA469B00007E67</string>
+											<string>21CC86B613FA469B00007E67</string>
+											<string>21CC874713FA6E2700007E67</string>
+											<string>21CC874813FA6E2700007E67</string>
+											<string>21CC874913FA6E2700007E67</string>
+											<string>21CC874A13FA6E2700007E67</string>
+											<string>21CC874B13FA6E2700007E67</string>
+											<string>21CC874C13FA6E2700007E67</string>
+											<string>21CC876A13FA704900007E67</string>
+											<string>21CC87B113FA731200007E67</string>
+											<string>21CC87B913FA734D00007E67</string>
+											<string>21CC87C313FA74A800007E67</string>
+											<string>21CC87C413FA74A800007E67</string>
+											<string>21CC87C513FA74A800007E67</string>
+											<string>21CC87C713FA74A800007E67</string>
+											<string>21CC87C813FA74A800007E67</string>
+											<string>21CC87C913FA74A800007E67</string>
+											<string>21CC87CB13FA74A800007E67</string>
+											<string>21CC87CE13FA74D000007E67</string>
+											<string>21CC87D113FA828600007E67</string>
+											<string>21CC87D413FA82CE00007E67</string>
+											<string>21CC87D513FA82CE00007E67</string>
+											<string>21CC87D613FA82CE00007E67</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -397,14 +412,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1018, 524}}</string>
+								<string>{{0, 0}, {816, 465}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 107 1280 671 0 0 1280 778 </string>
+								<string>53 142 1158 612 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>524pt</string>
+							<string>465pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -417,9 +432,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 529}, {1018, 101}}</string>
+								<string>{{0, 470}, {816, 101}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 107 1280 671 0 0 1280 778 </string>
+								<string>53 142 1158 612 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -428,7 +443,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>1018pt</string>
+					<string>816pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -587,9 +602,10 @@
 		<string>21CC860F13FA373000007E67</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>217854D113F7A7E400C4D338</string>
+		<string>/Users/Peteo/projects/GeniusPeteo/coco2d_learn/coco2d_learn.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>0 107 1280 671 0 0 1280 778 </string>
+	<string>53 142 1158 612 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

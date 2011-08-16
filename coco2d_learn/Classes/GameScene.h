@@ -13,8 +13,21 @@
 {
 	CCSprite * player;
 	CGPoint    playerVelocity;
+	
+	CCArray  * spiders;
+	
+	float      spiderMoveDuration;
+	int        numSpidersMoved;
+	
+	CCLabelTTF * scoreLabel;
+	
+	ccTime  totalTime;
+	int     score;
+	
 }
 
 +(id) scene;
+
+-(void) resetSpiders;
 
 @end
