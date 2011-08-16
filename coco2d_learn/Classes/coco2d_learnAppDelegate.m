@@ -13,6 +13,8 @@
 #import "HelloWorldLayer.h"
 #import "RootViewController.h"
 
+#import "GameScene.h"
+
 @implementation coco2d_learnAppDelegate
 
 @synthesize window;
@@ -82,11 +84,15 @@
 	// By default, this template only supports Landscape orientations.
 	// Edit the RootViewController.m file to edit the supported orientations.
 	//
+	
+	
 #if GAME_AUTOROTATION == kGameAutorotationUIViewController
 	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
 #else
 	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
 #endif
+	
+	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
 	
 	[director setAnimationInterval:1.0/60];
 	[director setDisplayFPS:YES];
@@ -98,6 +104,17 @@
 	// make the View Controller a child of the main window
 	[window addSubview: viewController.view];
 	
+	
+	// add layer
+	/*
+	scene = [CCScene node];
+	
+	CCSprite *bg = [CCSprite spriteWithFile:@"bg.png"];
+	bg.anchorPoint = ccp(0.0f,0.0f);	
+	[scene addChild:bg z:0];
+	
+	*/
+	
 	[window makeKeyAndVisible];
 	
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
@@ -105,12 +122,18 @@
 	// You can change anytime.
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 
-	
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+	[[CCDirector sharedDirector] runWithScene: [GameScene scene]];
+	
+	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+	
+	//[[CCDirector sharedDirector] runWithScene: scene];
+	
+	
+	
 }
 
 

@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "cocos2d.h"
 
 @class RootViewController;
 
-@interface coco2d_learnAppDelegate : NSObject <UIApplicationDelegate> {
+@interface coco2d_learnAppDelegate : NSObject <UIApplicationDelegate> 
+{
 	UIWindow			*window;
 	RootViewController	*viewController;
+	
+	CCScene				*scene;
 }
 
 @property (nonatomic, retain) UIWindow *window;
