@@ -65,7 +65,7 @@
 	if( (self=[super init])) 
 	{
 		// ask director the the window size
-		CGSize size = [[CCDirector sharedDirector] winSize];
+		//CGSize size = [[CCDirector sharedDirector] winSize];
 		
 		CCSprite *bg = [CCSprite spriteWithFile:@"bg.png"];
 		bg.anchorPoint = ccp(0.0f,0.0f);	
@@ -92,7 +92,7 @@
 		self.isAccelerometerEnabled = YES;
 		
 		//4个房间的Item
-		
+		/*
 		CCMenuItemImage *vm1 = [CCMenuItemImage itemFromNormalImage:@"room.png" selectedImage:@"room_s.png" target:self selector:@selector(room1:)];
 		CCLabelTTF *label1 = [CCLabelTTF labelWithString:@"ROOM1(0)" fontName:@"Marker Felt" fontSize:26];
 		item1 = [CCMenuItemLabel itemWithLabel:label1];
@@ -122,7 +122,36 @@
 		vmm4.position = ccp(2 * size.width / 3, size.height / 3);
 		[self addChild:vmm4 z:1];
 		
+		*/
+		
+		
+		
 		//[self unschedule:_cmd];
+		
+		
+		/*
+		CCProgressTimer* timer = [CCProgressTimer progressWithFile:@"Icon.png"];
+		timer.position = ccp(100,100);
+		timer.type = kCCProgressTimerTypeHorizontalBarLR; 
+		timer.percentage = 0; 
+		[self addChild:timer z:1 tag:111];
+		// 进度条需要预约的更新方法来更新自身的状态 
+		[self scheduleUpdate];
+		*/
+		
+		
+		/*
+		CCMotionStreak* streak = [CCMotionStreak streakWithFade:0.7f 
+														 minSeg:10
+														  image:@"Icon.png"
+														  width:32 
+														 length:32 
+														  color:ccc4(0, 0, 0, 0)];
+		
+		[self addChild:streak z:5 tag:11];
+		*/
+		
+		
 		
 	}
 	return self;
@@ -146,11 +175,58 @@
 	label.scale = CCRANDOM_0_1();
 	*/
 	
+	/*
+	UITouch *touch = [touches anyObject];
+	
+	CGPoint location = [touch locationInView:[touch view]];
+	
+	
+	CCMotionStreak* streak = (CCMotionStreak*)[self getChildByTag:11];
+	[streak.ribbon addPointAt:location width:32];
+	*/
+	
+}
+
+-(void) ccTouchesMoved:(NSSet*)touches withEvent:(UIEvent*)event; 
+{
+	/*
+	 CCLabelTTF * label = (CCLabelTTF*)[self getChildByTag:13];
+	 label.scale = CCRANDOM_0_1();
+	 */
+	
+	/*
+	UITouch *touch = [touches anyObject];
+	
+	CGPoint location = [touch locationInView:[touch view]];
+	
+	
+	CCMotionStreak* streak = (CCMotionStreak*)[self getChildByTag:11];
+	[streak.ribbon addPointAt:location width:32];
+	*/
+	
 }
 
 -(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration 
 {
 	CCLOG(@"acceleration: x:%f / y:%f / z:%f", acceleration.x, acceleration.y, acceleration.z);
 }
+
+
+-(void)update:(ccTime)delta
+{
+	// 更新进度条的时间显示
+	/*
+	CCNode* node = [self getChildByTag:111];
+	
+	CCProgressTimer* timer = (CCProgressTimer*)node;
+	timer.percentage += delta * 10;
+	if (timer.percentage >= 100) 
+	{
+		timer.percentage = 0;
+	}
+	*/
+	
+}
+
 
 @end

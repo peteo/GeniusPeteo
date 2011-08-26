@@ -196,8 +196,6 @@
 		
 		[self scheduleUpdate];
 		
-		SimpleAudioEngine
-		
 	}
 	
 	return self;

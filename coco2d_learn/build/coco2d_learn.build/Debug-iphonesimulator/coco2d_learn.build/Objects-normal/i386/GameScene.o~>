@@ -1,5 +1,0 @@
-/Users/Peteo/projects/GeniusPeteo/coco2d_learn/Classes/GameScene.m: In function '-[GameScene init]':
-/Users/Peteo/projects/GeniusPeteo/coco2d_learn/Classes/GameScene.m:199: error: 'SimpleAudioEngine' undeclared (first use in this function)
-/Users/Peteo/projects/GeniusPeteo/coco2d_learn/Classes/GameScene.m:199: error: (Each undeclared identifier is reported only once
-/Users/Peteo/projects/GeniusPeteo/coco2d_learn/Classes/GameScene.m:199: error: for each function it appears in.)
-/Users/Peteo/projects/GeniusPeteo/coco2d_learn/Classes/GameScene.m:201: error: expected ';' before '}' token

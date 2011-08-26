@@ -12,8 +12,10 @@
 #import "GameConfig.h"
 #import "HelloWorldLayer.h"
 #import "RootViewController.h"
-
+#import "MenuLayer.h"
 #import "GameScene.h"
+
+#import "SimpleAudioEngine.h"
 
 @implementation coco2d_learnAppDelegate
 
@@ -92,7 +94,7 @@
 	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
 #endif
 	
-	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
+	//[director setDeviceOrientation:kCCDeviceOrientationPortrait];
 	
 	[director setAnimationInterval:1.0/60];
 	[director setDisplayFPS:YES];
@@ -126,13 +128,17 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [GameScene scene]];
+	//[[CCDirector sharedDirector] runWithScene: [GameScene scene]];
 	
 	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
 	
 	//[[CCDirector sharedDirector] runWithScene: scene];
 	
+	//播放音乐
+	//[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"blues.mp3" loop:YES]; 
+	//[[SimpleAudioEngine sharedEngine] playEffect:@"alien-sfx.caf"];
 	
+	[[CCDirector sharedDirector] runWithScene: [MenuLayer scene]];
 	
 }
 
