@@ -135,7 +135,7 @@
 	//[[CCDirector sharedDirector] runWithScene: scene];
 	
 	//播放音乐
-	//[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"blues.mp3" loop:YES]; 
+	[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bankground.mp3" loop:YES]; 
 	//[[SimpleAudioEngine sharedEngine] playEffect:@"alien-sfx.caf"];
 	
 	[[CCDirector sharedDirector] runWithScene: [MenuLayer scene]];

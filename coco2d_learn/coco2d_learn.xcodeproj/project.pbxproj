@@ -14,6 +14,11 @@
 		21610DB713F8B87000765144 /* room.png in Resources */ = {isa = PBXBuildFile; fileRef = 21610DB513F8B87000765144 /* room.png */; };
 		21610EB713F90EB800765144 /* MenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21610EB613F90EB800765144 /* MenuLayer.m */; };
 		21610F3A13F9207200765144 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 21610F3913F9207200765144 /* GameScene.m */; };
+		21A067A21407E26700A34C52 /* bankground.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21A0679D1407E26700A34C52 /* bankground.mp3 */; };
+		21A067A31407E26700A34C52 /* card.caf in Resources */ = {isa = PBXBuildFile; fileRef = 21A0679E1407E26700A34C52 /* card.caf */; };
+		21A067A41407E26700A34C52 /* card.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21A0679F1407E26700A34C52 /* card.mp3 */; };
+		21A067A51407E26700A34C52 /* tip.caf in Resources */ = {isa = PBXBuildFile; fileRef = 21A067A01407E26700A34C52 /* tip.caf */; };
+		21A067A61407E26700A34C52 /* tip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 21A067A11407E26700A34C52 /* tip.wav */; };
 		504DFBCE10AF12E9006D82FE /* CLScoreServerPost.h in Headers */ = {isa = PBXBuildFile; fileRef = 504DFBC810AF12E9006D82FE /* CLScoreServerPost.h */; };
 		504DFBCF10AF12E9006D82FE /* CLScoreServerPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 504DFBC910AF12E9006D82FE /* CLScoreServerPost.m */; };
 		504DFBD010AF12E9006D82FE /* CLScoreServerRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 504DFBCA10AF12E9006D82FE /* CLScoreServerRequest.h */; };
@@ -267,6 +272,11 @@
 		21610EB613F90EB800765144 /* MenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayer.m; sourceTree = "<group>"; };
 		21610F3813F9207200765144 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		21610F3913F9207200765144 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		21A0679D1407E26700A34C52 /* bankground.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bankground.mp3; sourceTree = "<group>"; };
+		21A0679E1407E26700A34C52 /* card.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = card.caf; sourceTree = "<group>"; };
+		21A0679F1407E26700A34C52 /* card.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = card.mp3; sourceTree = "<group>"; };
+		21A067A01407E26700A34C52 /* tip.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tip.caf; sourceTree = "<group>"; };
+		21A067A11407E26700A34C52 /* tip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tip.wav; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		504DFBC810AF12E9006D82FE /* CLScoreServerPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLScoreServerPost.h; sourceTree = "<group>"; };
 		504DFBC910AF12E9006D82FE /* CLScoreServerPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLScoreServerPost.m; sourceTree = "<group>"; };
@@ -542,6 +552,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		21A0679C1407E26700A34C52 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				21A0679D1407E26700A34C52 /* bankground.mp3 */,
+				21A0679E1407E26700A34C52 /* card.caf */,
+				21A0679F1407E26700A34C52 /* card.mp3 */,
+				21A067A01407E26700A34C52 /* tip.caf */,
+				21A067A11407E26700A34C52 /* tip.wav */,
+			);
+			path = sound;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
@@ -665,6 +687,7 @@
 		50F414EB1069373D002A0D5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				21A0679C1407E26700A34C52 /* sound */,
 				21610DB413F8B87000765144 /* room_s.png */,
 				21610DB513F8B87000765144 /* room.png */,
 				21610D7013F8AF8100765144 /* bg.png */,
@@ -1119,6 +1142,11 @@
 				21610D7113F8AF8100765144 /* bg.png in Resources */,
 				21610DB613F8B87000765144 /* room_s.png in Resources */,
 				21610DB713F8B87000765144 /* room.png in Resources */,
+				21A067A21407E26700A34C52 /* bankground.mp3 in Resources */,
+				21A067A31407E26700A34C52 /* card.caf in Resources */,
+				21A067A41407E26700A34C52 /* card.mp3 in Resources */,
+				21A067A51407E26700A34C52 /* tip.caf in Resources */,
+				21A067A61407E26700A34C52 /* tip.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

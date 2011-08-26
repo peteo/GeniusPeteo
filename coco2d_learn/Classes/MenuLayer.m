@@ -7,7 +7,7 @@
 //
 
 #import "MenuLayer.h"
-
+#import "SimpleAudioEngine.h"
 
 @implementation MenuLayer
 
@@ -28,12 +28,12 @@
 
 -(void) menuItem1Touched: (id) sender
 {	
-	
+	[[SimpleAudioEngine sharedEngine] playEffect:@"card.caf"];
 }
 
 -(void) menuItem2Touched: (id) sender
 {	
-	
+	[[SimpleAudioEngine sharedEngine] playEffect:@"tip.caf"];
 }
 
 -(void) menuItem3Touched: (id) sender
