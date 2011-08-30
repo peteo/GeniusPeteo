@@ -9,6 +9,8 @@
 #import "MenuLayer.h"
 #import "SimpleAudioEngine.h"
 
+#import "CCScrollLayer.h"
+
 @implementation MenuLayer
 
 +(CCScene *) scene
@@ -78,13 +80,28 @@
 		CCMenuItemToggle* item3 = [CCMenuItemToggle itemWithTarget:self selector:@selector(menuItem3Touched:) items:toggleOn, toggleOff, nil];
 		
 		// 用菜单项生成菜单 
-		CCMenu* menu = [CCMenu menuWithItems:item1, item2, item3, nil]; 
-		menu.position = CGPointMake(size.width / 2, size.height / 2); 
-		[self addChild:menu];
+		//CCMenu* menu = [CCMenu menuWithItems:item1, item2, item3, nil]; 
+		//menu.position = CGPointMake(size.width / 2, size.height / 2); 
+		//[self addChild:menu];
 		
 		// 排列对齐很重要,这样的话菜单项才不会叠加在同一个位置 
 		
-		[menu alignItemsVerticallyWithPadding:40];
+		//[menu alignItemsVerticallyWithPadding:40];
+		
+		
+		CCLayer *pageOne = [[CCLayer alloc] init];
+		
+		[pageOne addChild:item1];
+		
+		CCLayer *pageTwo = [[CCLayer alloc] init];
+		
+		[pageTwo addChild:item2];
+		
+		// now create the scroller and pass-in the pages (set widthOffset to 0 for fullscreen pages)
+		CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,nil] widthOffset: 230];
+		
+		// finally add the scroller to your scene
+		[self addChild:scroller];
 		
 	}
 	return self;

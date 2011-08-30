@@ -19,6 +19,7 @@
 		21A067A41407E26700A34C52 /* card.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21A0679F1407E26700A34C52 /* card.mp3 */; };
 		21A067A51407E26700A34C52 /* tip.caf in Resources */ = {isa = PBXBuildFile; fileRef = 21A067A01407E26700A34C52 /* tip.caf */; };
 		21A067A61407E26700A34C52 /* tip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 21A067A11407E26700A34C52 /* tip.wav */; };
+		21E652E9140D334900CEC9E6 /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E652E8140D334900CEC9E6 /* CCScrollLayer.m */; };
 		504DFBCE10AF12E9006D82FE /* CLScoreServerPost.h in Headers */ = {isa = PBXBuildFile; fileRef = 504DFBC810AF12E9006D82FE /* CLScoreServerPost.h */; };
 		504DFBCF10AF12E9006D82FE /* CLScoreServerPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 504DFBC910AF12E9006D82FE /* CLScoreServerPost.m */; };
 		504DFBD010AF12E9006D82FE /* CLScoreServerRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 504DFBCA10AF12E9006D82FE /* CLScoreServerRequest.h */; };
@@ -277,6 +278,8 @@
 		21A0679F1407E26700A34C52 /* card.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = card.mp3; sourceTree = "<group>"; };
 		21A067A01407E26700A34C52 /* tip.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tip.caf; sourceTree = "<group>"; };
 		21A067A11407E26700A34C52 /* tip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tip.wav; sourceTree = "<group>"; };
+		21E652E7140D334900CEC9E6 /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
+		21E652E8140D334900CEC9E6 /* CCScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScrollLayer.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		504DFBC810AF12E9006D82FE /* CLScoreServerPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLScoreServerPost.h; sourceTree = "<group>"; };
 		504DFBC910AF12E9006D82FE /* CLScoreServerPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLScoreServerPost.m; sourceTree = "<group>"; };
@@ -607,6 +610,8 @@
 		2D500B1D0D5A766B00DBA0E3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				21E652E7140D334900CEC9E6 /* CCScrollLayer.h */,
+				21E652E8140D334900CEC9E6 /* CCScrollLayer.m */,
 				E0F80F5D120A0182005866B8 /* GameConfig.h */,
 				21610EB513F90EB800765144 /* MenuLayer.h */,
 				21610EB613F90EB800765144 /* MenuLayer.m */,
@@ -1163,6 +1168,7 @@
 				E0F80F60120A0182005866B8 /* RootViewController.m in Sources */,
 				21610EB713F90EB800765144 /* MenuLayer.m in Sources */,
 				21610F3A13F9207200765144 /* GameScene.m in Sources */,
+				21E652E9140D334900CEC9E6 /* CCScrollLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
