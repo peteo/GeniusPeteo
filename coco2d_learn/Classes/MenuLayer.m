@@ -31,6 +31,13 @@
 -(void) menuItem1Touched: (id) sender
 {	
 	[[SimpleAudioEngine sharedEngine] playEffect:@"card.caf"];
+	
+	//CCRotateBy* rotateBy = [CCRotateBy actionWithDuration:2 angle:360]; 
+	
+	CCFadeOut * fadeOut =  [CCFadeOut actionWithDuration:0.5];
+	
+	//CCRepeatForever* repeat = [CCRepeatForever actionWithAction:rotateBy]; 
+	[m_pTestImg runAction:fadeOut];
 }
 
 -(void) menuItem2Touched: (id) sender
@@ -66,7 +73,7 @@
 		// 使用已有的精灵生成一个菜单项 
 		CCSprite* normal = [CCSprite spriteWithFile:@"Icon.png"];
 		normal.color = ccRED; 
-		CCSprite* selected = [CCSprite spriteWithFile:@"Icon.png"]; 
+		CCSprite * selected = [CCSprite spriteWithFile:@"Icon.png"]; 
 		selected.color = ccGREEN; 
 		
 		CCMenuItemSprite* item2 = [CCMenuItemSprite itemFromNormalSprite:normal
@@ -80,15 +87,15 @@
 		CCMenuItemToggle* item3 = [CCMenuItemToggle itemWithTarget:self selector:@selector(menuItem3Touched:) items:toggleOn, toggleOff, nil];
 		
 		// 用菜单项生成菜单 
-		//CCMenu* menu = [CCMenu menuWithItems:item1, item2, item3, nil]; 
-		//menu.position = CGPointMake(size.width / 2, size.height / 2); 
-		//[self addChild:menu];
+		CCMenu* menu = [CCMenu menuWithItems:item1, item2, item3, nil]; 
+		menu.position = CGPointMake(size.width / 2, size.height / 2); 
+		[self addChild:menu];
 		
 		// 排列对齐很重要,这样的话菜单项才不会叠加在同一个位置 
 		
-		//[menu alignItemsVerticallyWithPadding:40];
+		[menu alignItemsVerticallyWithPadding:40];
 		
-		
+		/*
 		CCLayer *pageOne = [[CCLayer alloc] init];
 		
 		[pageOne addChild:item1];
@@ -102,6 +109,11 @@
 		
 		// finally add the scroller to your scene
 		[self addChild:scroller];
+		*/
+		
+		m_pTestImg = [CCSprite spriteWithFile:@"Icon.png"];
+		m_pTestImg.position = ccp([m_pTestImg contentSize].width/2,[m_pTestImg contentSize].height/2);	
+		[self addChild:m_pTestImg];
 		
 	}
 	return self;

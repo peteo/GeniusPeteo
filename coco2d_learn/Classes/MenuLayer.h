@@ -11,7 +11,7 @@
 
 @interface MenuLayer : CCLayer 
 {
-	
+	CCSprite * m_pTestImg;
 }
 
 +(CCScene *) scene;
