@@ -1,45 +1,43 @@
 //
-//  CCScrollLayer.m
+// CCScrollLayer.m
 //
-//  Copyright 2010 DK101
-//  http://dk101.net/2010/11/30/implementing-page-scrolling-in-cocos2d/
+// Copyright 2010 DK101
+// http://dk101.net/2010/11/30/implementing-page-scrolling-in-cocos2d/
 //
-//  Copyright 2010 Giv Parvaneh.
-//  http://www.givp.org/blog/2010/12/30/scrolling-menus-in-cocos2d/
+// Copyright 2010 Giv Parvaneh.
+// http://www.givp.org/blog/2010/12/30/scrolling-menus-in-cocos2d/
 //
-//  Copyright 2011 Stepan Generalov
-//  Copyright 2011 Jeff Keeme
-//  Copyright 2011 Brian Feller
+// Copyright 2011 Stepan Generalov
 //
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
 //
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
+#ifndef __MAC_OS_X_VERSION_MAX_ALLOWED
 
 #import "CCScrollLayer.h"
 #import "CCGL.h"
 
-enum 
+enum
 {
-	kCCScrollLayerStateIdle,
-	kCCScrollLayerStateSliding,
+    kCCScrollLayerStateIdle,
+    kCCScrollLayerStateSliding,
 };
 
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 @interface CCTouchDispatcher (targetedHandlersGetter)
 
 - (NSMutableArray *) targetedHandlers;
@@ -50,270 +48,215 @@ enum
 
 - (NSMutableArray *) targetedHandlers
 {
-	return targetedHandlers;
+    return targetedHandlers;
 }
 
 @end
-#endif
 
 @implementation CCScrollLayer
 
-@synthesize delegate = delegate_;
 @synthesize minimumTouchLengthToSlide = minimumTouchLengthToSlide_;
 @synthesize minimumTouchLengthToChangePage = minimumTouchLengthToChangePage_;
+@synthesize totalScreens = totalScreens_;
 @synthesize currentScreen = currentScreen_;
 @synthesize showPagesIndicator = showPagesIndicator_;
-@synthesize pagesIndicatorPosition = pagesIndicatorPosition_;
-@synthesize pagesWidthOffset = pagesWidthOffset_;
-@synthesize pages = layers_;
-@synthesize stealTouches = stealTouches_;
+@synthesize isHorizontal = isHorizontal_;
 
-@dynamic totalScreens;
-- (int) totalScreens
++(id) nodeWithLayers:(NSArray *)layers widthOffset: (int) offset
 {
-	return [layers_ count];
+    return [[[self alloc] initWithLayers: layers widthOffset:offset] autorelease];
 }
 
-+(id) nodeWithLayers:(NSArray *)layers widthOffset: (int) widthOffset
+-(id) initWithLayers:(NSArray *)layers widthOffset: (int) offset
 {
-	return [[[self alloc] initWithLayers: layers widthOffset:widthOffset] autorelease];
-}
-
--(id) initWithLayers:(NSArray *)layers widthOffset: (int) widthOffset
-{
-	if ( (self = [super init]) )
+    if ( (self = [super init]) )
 	{
-		NSAssert([layers count], @"CCScrollLayer#initWithLayers:widthOffset: you must provide at least one layer!");
+        NSAssert([layers count], @"CCScrollLayer#initWithLayers:widthOffset: you must provide at least one layer!");
 		
-		// Enable Touches/Mouse.
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-		self.isTouchEnabled = YES;
-#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
-        self.isMouseEnabled = YES;
-#endif
+        // Enable touches.
+        self.isTouchEnabled = YES;
 		
-		self.stealTouches = YES;
+		isHorizontal_  = YES;
 		
-		// Set default minimum touch length to scroll.
-		self.minimumTouchLengthToSlide = 30.0f;
-		self.minimumTouchLengthToChangePage = 100.0f;
+        // Set default minimum touch length to scroll.
+        self.minimumTouchLengthToSlide = 30.0f;
+        self.minimumTouchLengthToChangePage = 100.0f;
 		
-		// Show indicator by default.
-		self.showPagesIndicator = YES;
-		self.pagesIndicatorPosition = ccp(0.5f * self.contentSize.width, ceilf ( self.contentSize.height / 8.0f ));
+        // Show indicator by default.
+        self.showPagesIndicator = YES;
 		
-		// Set up the starting variables
-		currentScreen_ = 0;	
+        // Set up the starting variables
+        currentScreen_ = 1;
 		
-		// Save offset.
-		self.pagesWidthOffset = widthOffset;			
+        // offset added to show preview of next/previous screens
+        scrollDistance_ = [[CCDirector sharedDirector] winSize].width - offset;
 		
-		// Save array of layers.
-		layers_ = [[NSMutableArray alloc] initWithArray:layers copyItems:NO];
+        // Loop through the array and add the screens
+        int i = 0;
+        for (CCLayer *l in layers)
+		{
+            l.anchorPoint = ccp(0,0);
+            l.position = ccp((i*scrollDistance_),0);
+            [self addChild:l];
+            i++;
+		}
 		
-		[self updatePages];			
+        // Setup a count of the available screens
+        totalScreens_ = [layers count];
 		
 	}
-	return self;
+    return self;
 }
 
-- (void) dealloc
++(id) nodeWithLayers:(NSArray *)layers heightOffset: (int) offset
 {
-	self.delegate = nil;
-	
-	[layers_ release];
-	layers_ = nil;
-	
-	[super dealloc];
+    return [[[self alloc] initWithLayers: layers heightOffset:offset] autorelease];
 }
 
-- (void) updatePages
+-(id) initWithLayers:(NSArray *)layers heightOffset: (int) offset
 {
-	// Loop through the array and add the screens if needed.
-	int i = 0;
-	for (CCLayer *l in layers_)
+    if ( (self = [super init]) )
 	{
-		l.anchorPoint = ccp(0,0);
-		l.contentSize = [CCDirector sharedDirector].winSize;
-		l.position = ccp(  (i * (self.contentSize.width - self.pagesWidthOffset)), 0  );
-		if (!l.parent)
-			[self addChild:l];
-		i++;
+        NSAssert([layers count], @"CCScrollLayer#initWithLayers:heightOffset: you must provide at least one layer!");
+		
+        // Enable touches.
+        self.isTouchEnabled = YES;
+		
+		isHorizontal_ = NO;
+		
+        // Set default minimum touch length to scroll.
+        self.minimumTouchLengthToSlide = 30.0f;
+        self.minimumTouchLengthToChangePage = 100.0f;
+		
+        // Show indicator by default.
+        self.showPagesIndicator = YES;
+		
+        // Set up the starting variables
+        currentScreen_ = 1;
+		
+        // offset added to show preview of next/previous screens
+        scrollDistance_ = [[CCDirector sharedDirector] winSize].height - offset;
+		
+        // Loop through the array and add the screens
+        int i = 0;
+        for (CCLayer *l in layers)
+		{
+            l.anchorPoint = ccp(0,0);
+            l.position = ccp(0,-(i*scrollDistance_));
+            [self addChild:l];
+            i++;
+		}
+		
+        // Setup a count of the available screens
+        totalScreens_ = [layers count];
+		
 	}
+    return self;
 }
 
 #pragma mark CCLayer Methods ReImpl
 
+// Register with more priority than CCMenu's but don't swallow touches
+-(void) registerWithTouchDispatcher
+{
+    [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:kCCMenuTouchPriority - 1 swallowsTouches:NO];
+}
+
 - (void) visit
 {
-	[super visit];//< Will draw after glPopScene. 
+    [super visit];//< Will draw after glPopScene.
 	
-	if (self.showPagesIndicator)
+    if (self.showPagesIndicator)
 	{
-		int totalScreens = [layers_ count];
+        // Prepare Points Array
+        CGFloat n = (CGFloat)totalScreens_; //< Total points count in CGFloat.
+        CGFloat d = 16.0f; //< Distance between points.
+        CGPoint points[totalScreens_];
 		
-		// Prepare Points Array
-		CGFloat n = (CGFloat)totalScreens; //< Total points count in CGFloat.
-		CGFloat pY = self.pagesIndicatorPosition.y; //< Points y-coord in parent coord sys.
-		CGFloat d = 16.0f; //< Distance between points.
-		CGPoint points[totalScreens];	
-		for (int i=0; i < totalScreens; ++i)
-		{
-			CGFloat pX = self.pagesIndicatorPosition.x + d * ( (CGFloat)i - 0.5f*(n-1.0f) );
-			points[i] = ccp (pX, pY);
-		}
+        if (isHorizontal_ == YES) {
+            CGFloat pY = ceilf ( self.contentSize.height / 8.0f ); //< Points y-coord in parent coord sys.
+            for (int i=0; i < totalScreens_; ++i)
+			{
+                CGFloat pX = 0.5f * self.contentSize.width + d * ( (CGFloat)i - 0.5f*(n-1.0f) );
+                points[i] = ccp (pX, pY);
+			}
+        } else {
+            CGFloat pX = self.contentSize.width - ceilf ( self.contentSize.width / 8.0f ); //< Points x-coord in parent coord sys.
+            for (int i=0; i < totalScreens_; ++i)
+			{
+                CGFloat pY = 0.5f * self.contentSize.height - d * ( (CGFloat)i - 0.5f*(n-1.0f) );
+                points[i] = ccp (pX, pY);
+			}
+        }
 		
-		// Set GL Values
-		glEnable(GL_POINT_SMOOTH);
-		GLboolean blendWasEnabled = glIsEnabled( GL_BLEND );
-		glEnable(GL_BLEND);
-		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-		glPointSize( 6.0 * CC_CONTENT_SCALE_FACTOR() );
+        // Set GL Values
+        glEnable(GL_POINT_SMOOTH);
+        GLboolean blendWasEnabled = glIsEnabled( GL_BLEND );
+        glEnable(GL_BLEND);
+        glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+        glPointSize( 6.0 * CC_CONTENT_SCALE_FACTOR() );
 		
-		// Draw Gray Points
-		glColor4ub(0x96,0x96,0x96,0xFF);
-		ccDrawPoints( points, totalScreens );
+        // Draw Gray Points
+        glColor4ub(0x96,0x96,0x96,0xFF);
+        ccDrawPoints( points, totalScreens_ );
 		
-		// Draw White Point for Selected Page
-		glColor4ub(0xFF,0xFF,0xFF,0xFF);
-		ccDrawPoint(points[currentScreen_]);
+        // Draw White Point for Selected Page
+        glColor4ub(0xFF,0xFF,0xFF,0xFF);
+        ccDrawPoint(points[currentScreen_ - 1]);
 		
-		// Restore GL Values
-		glPointSize(1.0f);
-		glDisable(GL_POINT_SMOOTH);
-		if (! blendWasEnabled)
-			glDisable(GL_BLEND);
+        // Restore GL Values
+        glPointSize(1.0f);
+        glDisable(GL_POINT_SMOOTH);
+        if (! blendWasEnabled)
+            glDisable(GL_BLEND);
 	}
 }
 
-#pragma mark Moving To / Selecting Pages
-
-- (void) moveToPageEnded
-{
-	if ([self.delegate respondsToSelector:@selector(scrollLayer:scrolledToPageNumber:)])
-		[self.delegate scrollLayer: self scrolledToPageNumber: currentScreen_];
-}
-
-- (int) pageNumberForPosition: (CGPoint) position
-{
-	CGFloat pageFloat = - self.position.x / (self.contentSize.width - self.pagesWidthOffset);
-	int pageNumber = ceilf(pageFloat);
-	if ( (CGFloat)pageNumber - pageFloat  >= 0.5f)
-		pageNumber--;
-	
-	
-	pageNumber = MAX(0, pageNumber);
-	pageNumber = MIN([layers_ count] - 1, pageNumber);
-	
-	return pageNumber;
-}
-	
-
-- (CGPoint) positionForPageWithNumber: (int) pageNumber
-{
-	return ccp( - pageNumber * (self.contentSize.width - self.pagesWidthOffset), 0.0f );
-}
+#pragma mark Pages Control
 
 -(void) moveToPage:(int)page
-{	
-    if (page < 0 || page >= [layers_ count]) {
-        CCLOGERROR(@"CCScrollLayer#moveToPage: %d - wrong page number, out of bounds. ", page);
-		return;
+{
+    int changeX = 0;
+    int changeY = 0;
+	
+    if (isHorizontal_ == YES) {
+        changeX = -((page-1)*scrollDistance_);
+    } else {
+        changeY = ((page-1)*scrollDistance_);
     }
-
-	id changePage = [CCMoveTo actionWithDuration:0.3 position: [self positionForPageWithNumber: page]];
-	changePage = [CCSequence actions: changePage,[CCCallFunc actionWithTarget:self selector:@selector(moveToPageEnded)], nil];
+	
+    id changePage = [CCMoveTo actionWithDuration:0.3 position:ccp(changeX,changeY)];
     [self runAction:changePage];
     currentScreen_ = page;
-
 }
 
--(void) selectPage:(int)page
-{
-    if (page < 0 || page >= [layers_ count]) {
-        CCLOGERROR(@"CCScrollLayer#selectPage: %d - wrong page number, out of bounds. ", page);
-		return;
-    }
-	
-    self.position = [self positionForPageWithNumber: page];
-    currentScreen_ = page;
-	
-}
+#pragma mark Hackish Stuff
 
-#pragma mark Dynamic Pages Control
-
-- (void) addPage: (CCLayer *) aPage
-{
-	[self addPage: aPage withNumber: [layers_ count]];
-}
-
-- (void) addPage: (CCLayer *) aPage withNumber: (int) pageNumber
-{
-	pageNumber = MIN(pageNumber, [layers_ count]);
-	pageNumber = MAX(pageNumber, 0);
-	
-	[layers_ insertObject: aPage atIndex: pageNumber];
-	
-	[self updatePages];
-	
-	[self moveToPage: currentScreen_];
-}
-
-- (void) removePage: (CCLayer *) aPage
-{
-	[layers_ removeObject: aPage];
-	[self removeChild: aPage cleanup: YES];
-	
-	[self updatePages];
-	
-	currentScreen_ = MIN(currentScreen_, [layers_ count] - 1);
-	[self moveToPage: currentScreen_];
-}
-
-- (void) removePageWithNumber: (int) page
-{
-	if (page >= 0 && page < [layers_ count])
-		[self removePage:[layers_ objectAtIndex: page]];
-}
-
-#pragma mark Touches
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-
-/** Register with more priority than CCMenu's but don't swallow touches. */
--(void) registerWithTouchDispatcher
-{	
-	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:kCCMenuTouchPriority - 1 swallowsTouches:NO];
-}
-
-/** Hackish stuff - stole touches from other CCTouchDispatcher targeted delegates. 
- Used to claim touch without receiving ccTouchBegan. */
 - (void) claimTouch: (UITouch *) aTouch
 {
-	// Enumerate through all targeted handlers.
-	for ( CCTargetedTouchHandler *handler in [[CCTouchDispatcher sharedDispatcher] targetedHandlers] )
+    // Enumerate through all targeted handlers.
+    for ( CCTargetedTouchHandler *handler in [[CCTouchDispatcher sharedDispatcher] targetedHandlers] )
 	{
-		// Only our handler should claim the touch.
-		if (handler.delegate == self)
+        // Only our handler should claim the touch.
+        if (handler.delegate == self)
 		{
-			if (![handler.claimedTouches containsObject: aTouch])
+            if (![handler.claimedTouches containsObject: aTouch])
 			{
-				[handler.claimedTouches addObject: aTouch];
+                [handler.claimedTouches addObject: aTouch];
 			}
-			else 
+            else
 			{
-				CCLOGERROR(@"CCScrollLayer#claimTouch: %@ is already claimed!", aTouch);
+                CCLOGERROR(@"CCScrollLayer#claimTouch: %@ is already claimed!", aTouch);
 			}
-			return;
+            return;
 		}
 	}
 }
 
 - (void) cancelAndStoleTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    // Throw Cancel message for everybody in TouchDispatcher and do not react on this.
-	stealingTouchInProgress_ = YES;
+    // Throw Cancel message for everybody in TouchDispatcher.
     [[CCTouchDispatcher sharedDispatcher] touchesCancelled: [NSSet setWithObject: touch] withEvent:event];
-	stealingTouchInProgress_ = NO;
 	
     //< after doing this touch is already removed from all targeted handlers
 	
@@ -321,176 +264,91 @@ enum
     [self claimTouch: touch];
 }
 
--(void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event 
-{
-    // Do not cancel touch, if this method is called from cancelAndStoleTouch:
-    if (stealingTouchInProgress_)
-		return;
-	
-    if( scrollTouch_ == touch ) {
-        scrollTouch_ = nil;
-        [self selectPage: currentScreen_];
-    }
-}
+#pragma mark Touches
 
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	if( scrollTouch_ == nil ) {
-		scrollTouch_ = touch;
-	} else {
-		return NO;
-	}
+    CGPoint touchPoint = [touch locationInView:[touch view]];
+    touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
 	
-	CGPoint touchPoint = [touch locationInView:[touch view]];
-	touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
+    if (isHorizontal_ == YES) {
+        startSwipe_ = touchPoint.x;
+    } else {
+        startSwipe_ = touchPoint.y;
+    }
 	
-	startSwipe_ = touchPoint.x;
-	state_ = kCCScrollLayerStateIdle;
-	return YES;
+    state_ = kCCScrollLayerStateIdle;
+    return YES;
 }
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	if( scrollTouch_ != touch ) {
-		return;
-	}
+    CGPoint touchPoint = [touch locationInView:[touch view]];
+    touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
 	
-	CGPoint touchPoint = [touch locationInView:[touch view]];
-	touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
+    int moveDistance = 0;
+    if (isHorizontal_ == YES) {
+        moveDistance = touchPoint.x-startSwipe_;
+    } else {
+        moveDistance = touchPoint.y-startSwipe_;
+    }
 	
-	
-	// If finger is dragged for more distance then minimum - start sliding and cancel pressed buttons.
-	// Of course only if we not already in sliding mode
-	if ( (state_ != kCCScrollLayerStateSliding) 
-		&& (fabsf(touchPoint.x-startSwipe_) >= self.minimumTouchLengthToSlide) )
+    // If finger is dragged for more distance then minimum - start sliding and cancel pressed buttons.
+    // Of course only if we not already in sliding mode
+    if ( (state_ != kCCScrollLayerStateSliding)
+        && (fabsf(moveDistance) >= self.minimumTouchLengthToSlide) )
 	{
-		state_ = kCCScrollLayerStateSliding;
+        state_ = kCCScrollLayerStateSliding;
 		
-		// Avoid jerk after state change.
-		startSwipe_ = touchPoint.x;
+        // Avoid jerk after state change.
+        if (isHorizontal_ == YES) {
+            startSwipe_ = touchPoint.x;
+        } else {
+            startSwipe_ = touchPoint.y;
+        }
 		
-		if (self.stealTouches)
-			[self cancelAndStoleTouch: touch withEvent: event];
-		
-		if ([self.delegate respondsToSelector:@selector(scrollLayerScrollingStarted:)])
-		{
-			[self.delegate scrollLayerScrollingStarted: self];
-		}
+        [self cancelAndStoleTouch: touch withEvent: event];
 	}
 	
-	if (state_ == kCCScrollLayerStateSliding)
-		self.position = ccp( (- currentScreen_ * (self.contentSize.width - self.pagesWidthOffset)) + (touchPoint.x-startSwipe_),0);	
+    if (state_ == kCCScrollLayerStateSliding) {
+        int pointX = 0;
+        int pointY = 0;
+        if (isHorizontal_ == YES) {
+            pointX = (-(currentScreen_-1)*scrollDistance_)+(touchPoint.x-startSwipe_);
+        } else {
+            pointY = ((currentScreen_-1)*scrollDistance_)+(touchPoint.y-startSwipe_);
+        }
+        self.position = ccp(pointX,pointY);
+    }
 	
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	if( scrollTouch_ == touch ) {
-		scrollTouch_ = nil;
-	}
+    CGPoint touchPoint = [touch locationInView:[touch view]];
+    touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
 	
-	CGPoint touchPoint = [touch locationInView:[touch view]];
-	touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
+    int offsetLoc = 0;
+    if (isHorizontal_ == YES) {
+        offsetLoc = (touchPoint.x - startSwipe_);
+    } else {
+        offsetLoc = -(touchPoint.y - startSwipe_);
+    }
 	
-	int newX = touchPoint.x;	
-	
-	if ( (newX - startSwipe_) < -self.minimumTouchLengthToChangePage && (currentScreen_+1) < [layers_ count] )
-	{		
-		[self moveToPage: [self pageNumberForPosition:self.position] ];		
-	}
-	else if ( (newX - startSwipe_) > self.minimumTouchLengthToChangePage && currentScreen_ > 0 )
-	{		
-		[self moveToPage: [self pageNumberForPosition:self.position] ];		
-	}
-	else
-	{		
-		[self moveToPage:currentScreen_];		
-	}	
-}
-
-#endif
-
-#pragma mark Mouse
-#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
-
-- (NSInteger) mouseDelegatePriority
-{
-	return kCCMenuMousePriority - 1;
-}
-
--(BOOL) ccMouseDown:(NSEvent*)event
-{
-	CGPoint touchPoint = [[CCDirector sharedDirector] convertEventToGL: event];
-	
-	startSwipe_ = touchPoint.x;
-	state_ = kCCScrollLayerStateIdle;
-	
-	return NO;
-}
-
--(BOOL) ccMouseDragged:(NSEvent*)event
-{
-	CGPoint touchPoint = [[CCDirector sharedDirector] convertEventToGL:event];
-	
-	// If mouse is dragged for more distance then minimum - start sliding.
-	if ( (state_ != kCCScrollLayerStateSliding) 
-		&& (fabsf(touchPoint.x-startSwipe_) >= self.minimumTouchLengthToSlide) )
+    if ( offsetLoc < -self.minimumTouchLengthToChangePage && (currentScreen_+1) <= totalScreens_ )
 	{
-		state_ = kCCScrollLayerStateSliding;
-		
-		// Avoid jerk after state change.
-		startSwipe_ = touchPoint.x;
-		
-		if ([self.delegate respondsToSelector:@selector(scrollLayerScrollingStarted:)])
-		{
-			[self.delegate scrollLayerScrollingStarted: self];
-		}
+        [self moveToPage: currentScreen_+1];
 	}
-	
-	if (state_ == kCCScrollLayerStateSliding)
-		self.position = ccp( (- currentScreen_ * (self.contentSize.width - self.pagesWidthOffset)) + (touchPoint.x-startSwipe_),0);	
-	
-	return NO;
-}
-
-- (BOOL)ccMouseUp:(NSEvent *)event
-{
-	CGPoint touchPoint = [[CCDirector sharedDirector] convertEventToGL:event];
-	
-	int newX = touchPoint.x;	
-	
-	if ( (newX - startSwipe_) < -self.minimumTouchLengthToChangePage && (currentScreen_+1) < [layers_ count] )
-	{		
-		[self moveToPage: [self pageNumberForPosition: self.position] ];		
+    else if ( offsetLoc > self.minimumTouchLengthToChangePage && (currentScreen_-1) > 0 )
+	{
+        [self moveToPage: currentScreen_-1];
 	}
-	else if ( (newX - startSwipe_) > self.minimumTouchLengthToChangePage && currentScreen_ > 0 )
-	{		
-		[self moveToPage: [self pageNumberForPosition:self.position] ];		
+    else
+	{
+        [self moveToPage:currentScreen_];
 	}
-	else
-	{		
-		[self moveToPage:currentScreen_];		
-	}	
-	
-	return NO;
 }
-
-- (BOOL)ccScrollWheel:(NSEvent *)theEvent
-{
-	CGFloat deltaX = [theEvent deltaX];
-	
-	CGPoint newPos = ccpAdd( self.position, ccp(deltaX, 0.0f) );
-	newPos.x = MIN(newPos.x, [self positionForPageWithNumber: 0].x);
-	newPos.x = MAX(newPos.x, [self positionForPageWithNumber: [layers_ count] - 1].x);
-	
-	self.position = newPos;
-	currentScreen_ = [self pageNumberForPosition:self.position];
-	
-	return NO;
-	
-}
-
-#endif
 
 @end
 
+#endif

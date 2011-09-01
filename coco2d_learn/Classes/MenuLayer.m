@@ -121,6 +121,7 @@
 		[self addChild:m_pTestImg];
 		*/
 		
+		/*
         CCScrollView * sclView = [CCScrollView scrollViewWithViewSize:CGSizeMake(size.width/2, size.height/2)];
         //pic.position          = ccp(0.0f, 0.0f);
 		
@@ -141,6 +142,50 @@
 		}
 		
         [self addChild:sclView];
+		*/
+		
+		int i = 0;
+		
+		//for(int i = 0;i < 25;i++)
+		
+		/*
+		CCMenuItemFont * item1 = [CCMenuItemFont itemFromString:@"Go Back!" target:self selector:nil];
+		CCMenu* menu1 = [CCMenu menuWithItems:item1,nil]; 
+		menu1.position    = CGPointMake(size.width / 2, size.height - 30 * (i+1));
+		menu1.contentSize = CGSizeMake(size.width,30);
+		
+		i ++;
+	
+	
+	
+		CCMenuItemFont * item2 = [CCMenuItemFont itemFromString:@"Go Back!" target:self selector:nil];
+		CCMenu* menu2 = [CCMenu menuWithItems:item2,nil]; 
+		menu2.position    = CGPointMake(size.width / 2, size.height - 30 * (i+1));
+		menu2.contentSize = CGSizeMake(size.width,30);
+		
+		i ++;
+		*/
+		
+		CCMenuItemFont * item1 = [CCMenuItemFont itemFromString:@"Go Back!" target:self selector:nil];
+		item1.position    = CGPointMake(0, size.height - 30 * (i+1));
+		item1.contentSize = CGSizeMake(size.width,30);
+		
+		i ++;
+		
+		
+		
+		CCMenuItemFont * item2 = [CCMenuItemFont itemFromString:@"Go Back!" target:self selector:nil];
+		item2.position    = CGPointMake(0, size.height - 30 * (i+1));
+		item2.contentSize = CGSizeMake(size.width,30);
+		
+		i ++;
+		
+		
+		CCScrollLayer *scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: item1,item2,nil] heightOffset: 10];
+		scroller.position      = ccp(size.width / 2, size.height / 2);
+		scroller.contentSize   = CGSizeMake(size.width,size.height);
+		
+		[self addChild:scroller];
 		
 	}
 	return self;
