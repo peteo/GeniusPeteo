@@ -1,0 +1,1 @@
+////  MyDoubleSizedCell.m//  CCTable////  Created by Sangwoo Im on 6/5/10.//  Copyright 2010 Sangwoo Im. All rights reserved.//#import "MyDoubleSizedCell.h"@implementation MyDoubleSizedCell+(CGSize)cellSize {    return CGSizeMake(114, 114);}@end

@@ -1,0 +1,1 @@
+////  MyDoubleSizedCell.h//  CCTable////  Created by Sangwoo Im on 6/5/10.//  Copyright 2010 Sangwoo Im. All rights reserved.//#import <Foundation/Foundation.h>#import "CCTableViewCell.h"@interface MyDoubleSizedCell : CCTableViewCell {}@end

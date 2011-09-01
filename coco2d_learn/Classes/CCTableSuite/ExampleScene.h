@@ -1,0 +1,1 @@
+////  ExampleScene.h//  CCTable////  Created by Sangwoo Im on 6/4/10.//  Copyright 2010 Sangwoo Im. All rights reserved.//#import <Foundation/Foundation.h>#import "cocos2d.h"@interface ExampleScene : CCLayer {}+(id)scene;@end

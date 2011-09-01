@@ -1,0 +1,1 @@
+////  MyCell.h//  CCTable////  Created by Sangwoo Im on 6/4/10.//  Copyright 2010 Sangwoo Im. All rights reserved.//#import "CCTableViewCell.h"@interface MyCell : CCTableViewCell {}@end

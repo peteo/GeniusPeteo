@@ -10,6 +10,7 @@
 #import "SimpleAudioEngine.h"
 
 #import "CCScrollLayer.h"
+#import "CCScrollView.h"
 
 @implementation MenuLayer
 
@@ -30,14 +31,14 @@
 
 -(void) menuItem1Touched: (id) sender
 {	
-	[[SimpleAudioEngine sharedEngine] playEffect:@"card.caf"];
+	//[[SimpleAudioEngine sharedEngine] playEffect:@"card.caf"];
 	
 	//CCRotateBy* rotateBy = [CCRotateBy actionWithDuration:2 angle:360]; 
 	
-	CCFadeOut * fadeOut =  [CCFadeOut actionWithDuration:0.5];
+	//CCFadeOut * fadeOut =  [CCFadeOut actionWithDuration:0.5];
 	
 	//CCRepeatForever* repeat = [CCRepeatForever actionWithAction:rotateBy]; 
-	[m_pTestImg runAction:fadeOut];
+	//[m_pTestImg runAction:fadeOut];
 }
 
 -(void) menuItem2Touched: (id) sender
@@ -59,7 +60,7 @@
 		// ask director the the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
 		
-		CCSprite *bg = [CCSprite spriteWithFile:@"bg.png"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"bg2.png"];
 		bg.anchorPoint = ccp(0.0f,0.0f);	
 		[self addChild:bg z:0];
 		
@@ -68,8 +69,9 @@
 		[CCMenuItemFont setFontSize:26];
 		
 		// 生成几个文字标签并指定它们的选择器 
-		CCMenuItemFont * item1 = [CCMenuItemFont itemFromString:@"Go Back!" target:self selector:@selector(menuItem1Touched:)];
+		//CCMenuItemFont * item1 = [CCMenuItemFont itemFromString:@"Go Back!" target:self selector:@selector(menuItem1Touched:)];
 		
+		/*
 		// 使用已有的精灵生成一个菜单项 
 		CCSprite* normal = [CCSprite spriteWithFile:@"Icon.png"];
 		normal.color = ccRED; 
@@ -85,15 +87,17 @@
 		CCMenuItemFont* toggleOn  = [CCMenuItemFont itemFromString:@"I'm ON!"];
 		CCMenuItemFont* toggleOff = [CCMenuItemFont itemFromString:@"I'm OFF!"]; 
 		CCMenuItemToggle* item3 = [CCMenuItemToggle itemWithTarget:self selector:@selector(menuItem3Touched:) items:toggleOn, toggleOff, nil];
+		*/
 		
 		// 用菜单项生成菜单 
-		CCMenu* menu = [CCMenu menuWithItems:item1, item2, item3, nil]; 
-		menu.position = CGPointMake(size.width / 2, size.height / 2); 
-		[self addChild:menu];
+		//CCMenu* menu = [CCMenu menuWithItems:item1, item2, item3, nil]; 
+		//CCMenu* menu = [CCMenu menuWithItems:item1,nil]; 
+		//menu.position = CGPointMake(size.width / 2, size.height / 2); 
+		//[self addChild:menu];
 		
 		// 排列对齐很重要,这样的话菜单项才不会叠加在同一个位置 
 		
-		[menu alignItemsVerticallyWithPadding:40];
+		//[menu alignItemsVerticallyWithPadding:40];
 		
 		/*
 		CCLayer *pageOne = [[CCLayer alloc] init];
@@ -111,9 +115,32 @@
 		[self addChild:scroller];
 		*/
 		
+		/*
 		m_pTestImg = [CCSprite spriteWithFile:@"Icon.png"];
 		m_pTestImg.position = ccp([m_pTestImg contentSize].width/2,[m_pTestImg contentSize].height/2);	
 		[self addChild:m_pTestImg];
+		*/
+		
+        CCScrollView * sclView = [CCScrollView scrollViewWithViewSize:CGSizeMake(size.width/2, size.height/2)];
+        //pic.position          = ccp(0.0f, 0.0f);
+		
+		sclView.bounces       = YES;
+        sclView.position      = ccp(0.0f, 0.0f);
+        sclView.contentOffset = ccp(0.0f, 0.0f);
+		sclView.direction     = CCScrollViewDirectionVertical;
+		
+		for(int i = 0;i < 25;i++)
+		{
+			CCMenuItemFont * item1 = [CCMenuItemFont itemFromString:@"Go Back!" target:self selector:nil];
+			CCMenu* menu = [CCMenu menuWithItems:item1,nil]; 
+			menu.position    = CGPointMake(size.width / 2, size.height - 30 * (i+1));
+			menu.contentSize = CGSizeMake(size.width / 2,30);
+			
+			sclView.contentSize   = CGSizeMake(size.width/2,30);
+			[sclView addChild:menu];
+		}
+		
+        [self addChild:sclView];
 		
 	}
 	return self;
