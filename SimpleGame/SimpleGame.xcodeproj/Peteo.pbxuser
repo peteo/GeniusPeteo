@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	1D6058900D05DD3D006BFB54 /* SimpleGame */ = {
+		activeExec = 0;
+		executables = (
+			21BF7B001429F7E600F8190A /* SimpleGame */,
+		);
+	};
+	21BF7B001429F7E600F8190A /* SimpleGame */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = SimpleGame;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	21BF7B141429F80500F8190A /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	21BF7B151429F80500F8190A /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	21BF7B1C1429F89D00F8190A /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = BF21A9A113E0F9D20067F790 /* CloseNormal.png */;
+	};
+	21BF7B1D1429F89D00F8190A /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = BF21A9A213E0F9D20067F790 /* CloseSelected.png */;
+	};
+	21BF7B1F1429F89D00F8190A /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = BF21A9A413E0F9D20067F790 /* HelloWorld.png */;
+	};
+	21BF7B211429F89D00F8190A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BF776BC812DFEFA800358B43 /* Export.h */;
+		name = "Export.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 310;
+		vrLoc = 0;
+	};
+	21BF7B221429F89D00F8190A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D408234F132F3DE800F44E75 /* AppController.h */;
+		name = "AppController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 315;
+		vrLoc = 0;
+	};
+	21BF7B231429F89D00F8190A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D408234D132F3DD900F44E75 /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 240;
+		vrLoc = 0;
+	};
+	21BF7B241429F89D00F8190A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D4082350132F3DE800F44E75 /* AppController.mm */;
+		name = "AppController.mm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 501;
+		vrLoc = 1038;
+	};
+	21BF7B251429F89D00F8190A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D4C3D25113F25E5600192C16 /* RootViewController.mm */;
+		name = "RootViewController.mm: 10";
+		rLen = 0;
+		rLoc = 174;
+		rType = 0;
+		vrLen = 414;
+		vrLoc = 47;
+	};
+	21BF7B5A1429FD3500F8190A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D4D9411213EADBA700555460 /* AppDelegate.h */;
+		name = "AppDelegate.h: 8";
+		rLen = 0;
+		rLoc = 124;
+		rType = 0;
+		vrLen = 335;
+		vrLoc = 0;
+	};
+	21BF7B5B1429FD3500F8190A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BF83631C13286EF300F3C033 /* HelloWorldScene.h */;
+		name = "HelloWorldScene.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 516;
+		vrLoc = 90;
+	};
+	21BF7B5C1429FD3500F8190A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BF19164112E052E1007DCFF1 /* LICENSE.cocos2d-x */;
+		name = "LICENSE.cocos2d-x: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1023;
+		vrLoc = 119;
+	};
+	21BF7B5D1429FD3500F8190A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D4D9411113EADBA700555460 /* AppDelegate.cpp */;
+		name = "AppDelegate.cpp: 13";
+		rLen = 0;
+		rLoc = 157;
+		rType = 0;
+		vrLen = 548;
+		vrLoc = 2384;
+	};
+	21BF7B5E1429FD3500F8190A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BF83631B13286EF300F3C033 /* HelloWorldScene.cpp */;
+		name = "HelloWorldScene.cpp: 70";
+		rLen = 0;
+		rLoc = 2037;
+		rType = 0;
+		vrLen = 481;
+		vrLoc = 1733;
+	};
+	21BF7B5F1429FD3500F8190A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BF83631B13286EF300F3C033 /* HelloWorldScene.cpp */;
+		name = "HelloWorldScene.cpp: 61";
+		rLen = 0;
+		rLoc = 1740;
+		rType = 0;
+		vrLen = 677;
+		vrLoc = 1287;
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 21BF7B001429F7E600F8190A /* SimpleGame */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* SimpleGame */;
+		codeSenseManager = 21BF7B151429F80500F8190A /* Code sense */;
+		executables = (
+			21BF7B001429F7E600F8190A /* SimpleGame */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					598,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 338295772;
+			PBXWorkspaceStateSaveDate = 338295772;
+		};
+		perUserProjectItems = {
+			21BF7B1C1429F89D00F8190A /* PBXBookmark */ = 21BF7B1C1429F89D00F8190A /* PBXBookmark */;
+			21BF7B1D1429F89D00F8190A /* PBXBookmark */ = 21BF7B1D1429F89D00F8190A /* PBXBookmark */;
+			21BF7B1F1429F89D00F8190A /* PBXBookmark */ = 21BF7B1F1429F89D00F8190A /* PBXBookmark */;
+			21BF7B211429F89D00F8190A /* PBXTextBookmark */ = 21BF7B211429F89D00F8190A /* PBXTextBookmark */;
+			21BF7B221429F89D00F8190A /* PBXTextBookmark */ = 21BF7B221429F89D00F8190A /* PBXTextBookmark */;
+			21BF7B231429F89D00F8190A /* PBXTextBookmark */ = 21BF7B231429F89D00F8190A /* PBXTextBookmark */;
+			21BF7B241429F89D00F8190A /* PBXTextBookmark */ = 21BF7B241429F89D00F8190A /* PBXTextBookmark */;
+			21BF7B251429F89D00F8190A /* PBXTextBookmark */ = 21BF7B251429F89D00F8190A /* PBXTextBookmark */;
+			21BF7B5A1429FD3500F8190A /* PBXTextBookmark */ = 21BF7B5A1429FD3500F8190A /* PBXTextBookmark */;
+			21BF7B5B1429FD3500F8190A /* PBXTextBookmark */ = 21BF7B5B1429FD3500F8190A /* PBXTextBookmark */;
+			21BF7B5C1429FD3500F8190A /* PBXTextBookmark */ = 21BF7B5C1429FD3500F8190A /* PBXTextBookmark */;
+			21BF7B5D1429FD3500F8190A /* PBXTextBookmark */ = 21BF7B5D1429FD3500F8190A /* PBXTextBookmark */;
+			21BF7B5E1429FD3500F8190A /* PBXTextBookmark */ = 21BF7B5E1429FD3500F8190A /* PBXTextBookmark */;
+			21BF7B5F1429FD3500F8190A /* PBXTextBookmark */ = 21BF7B5F1429FD3500F8190A /* PBXTextBookmark */;
+		};
+		sourceControlManager = 21BF7B141429F80500F8190A /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	506EE05D10304ED200A389B3 /* cocos2d libraries */ = {
+		activeExec = 0;
+	};
+	BF19164112E052E1007DCFF1 /* LICENSE.cocos2d-x */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {868.116, 462}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{119, 1023}";
+		};
+	};
+	BF776BC812DFEFA800358B43 /* Export.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {716.399, 483}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 310}";
+		};
+	};
+	BF83631B13286EF300F3C033 /* HelloWorldScene.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1041.51, 1554}}";
+			sepNavSelRange = "{1740, 0}";
+			sepNavVisRange = "{1287, 677}";
+		};
+	};
+	BF83631C13286EF300F3C033 /* HelloWorldScene.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1225.73, 483}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{90, 516}";
+		};
+	};
+	D408234D132F3DD900F44E75 /* main.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {770.584, 336}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 240}";
+		};
+	};
+	D408234F132F3DE800F44E75 /* AppController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1388.29, 336}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 315}";
+		};
+	};
+	D4082350132F3DE800F44E75 /* AppController.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1247.41, 2478}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{1038, 501}";
+		};
+	};
+	D4C3D25113F25E5600192C16 /* RootViewController.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1767.58, 1218}}";
+			sepNavSelRange = "{174, 0}";
+			sepNavVisRange = "{47, 414}";
+		};
+	};
+	D4D9411113EADBA700555460 /* AppDelegate.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1247.41, 2436}}";
+			sepNavSelRange = "{157, 0}";
+			sepNavVisRange = "{2384, 548}";
+		};
+	};
+	D4D9411213EADBA700555460 /* AppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1019.83, 987}}";
+			sepNavSelRange = "{124, 0}";
+			sepNavVisRange = "{0, 335}";
+		};
+	};
+}
