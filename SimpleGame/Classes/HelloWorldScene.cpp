@@ -33,8 +33,8 @@ bool HelloWorld::init()
 
 	// add a "close" icon to exit the progress. it's an autorelease object
 	CCMenuItemImage *pCloseItem = CCMenuItemImage::itemFromNormalImage(
-										"CloseNormal.png",
-										"CloseSelected.png",
+										"Resources/CloseNormal.png",
+										"Resources/CloseSelected.png",
 										this,
 										menu_selector(HelloWorld::menuCloseCallback) );
 	pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
@@ -61,7 +61,7 @@ bool HelloWorld::init()
 	this->addChild(pLabel, 1);
 
 	// add "HelloWorld" splash screen"
-	CCSprite* pSprite = CCSprite::spriteWithFile("HelloWorld.png");
+	CCSprite* pSprite = CCSprite::spriteWithFile("Resources/HelloWorld.png");
 
 	// position the sprite on the center of the screen
 	pSprite->setPosition( ccp(size.width/2, size.height/2) );
